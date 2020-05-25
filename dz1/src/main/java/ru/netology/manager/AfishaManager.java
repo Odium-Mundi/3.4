@@ -4,32 +4,31 @@ import lombok.NoArgsConstructor;
 
 
 import ru.netology.domain.Films;
+import ru.netology.repository.AfishaRepository;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class FilmsManager {
+public class AfishaManager {
+    private AfishaRepository repository;
+    public AfishaManager(AfishaRepository repository){
+        this.repository = repository;
+    }
 
+    public AfishaManager(AfishaRepository repository, int countFilms) {
+        this.repository = repository;
+        this.countFilms = countFilms;
+    }
 
     private Films[] items = new Films[0];
     private int countFilms = 10;
     private int itemsLength;
-    public FilmsManager(int countFilms) {
-        this.countFilms = countFilms;
-    }
 
     public void add(Films item) {
-        int length = items.length + 1;
-        Films[] tmp = new Films[length];
-
-        for (int i = 0; i<items.length; i++) {
-            tmp[i] = items[i];
-        }
-    int lastIndex = tmp.length - 1;
-   tmp[lastIndex] = item;
-   items = tmp;
+        repository.save(item);
     }
 
     public Films[] getAll() {
+        Films[] items = repository.findAll();
         if (itemsLength <=0 || itemsLength > countFilms){
             itemsLength = countFilms;
         }
@@ -45,4 +44,10 @@ public class FilmsManager {
         return result;
     }
 
+    public void removeById(int id) {
+        repository.removeById(id);
+    }
+    public void findById(int id) {
+        repository.findById(id);
+    }
 }

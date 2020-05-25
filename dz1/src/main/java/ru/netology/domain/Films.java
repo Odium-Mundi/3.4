@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 
 public class Films {
     private String filmName;
+    private int id;
+
 }
