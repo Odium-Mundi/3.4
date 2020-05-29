@@ -13,7 +13,6 @@ public class FilmsManager {
 
     private Films[] items = new Films[0];
     private int countFilms = 10;
-    private int itemsLength;
     private int newLength;
 
     public FilmsManager(int newLength) {
@@ -33,13 +32,13 @@ public class FilmsManager {
     }
 
     public Films[] getAll() {
-        if (itemsLength <= 0 || itemsLength > countFilms) {
-            itemsLength = countFilms;
+        if (newLength <= 0 || newLength > countFilms) {
+            newLength = countFilms;
         }
-        if (items.length < itemsLength) {
-            itemsLength = items.length;
+        if (items.length < newLength) {
+            newLength = items.length;
         }
-        Films[] result = new Films[itemsLength];
+        Films[] result = new Films[newLength];
 
         for (int i = 0; i < items.length; i++) {
             int index = items.length - i - 1;
