@@ -16,7 +16,6 @@ class AfishaRepositoryTest {
     private Films film2 = new Films("nameFilm2", 2);
 
     @BeforeEach
-    @Test
     public void addFilms() {
         manager.add(film1);
         manager.add(film2);

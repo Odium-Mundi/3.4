@@ -23,7 +23,6 @@ public class AfishaManager {
 
     private Films[] items = new Films[0];
     private int countFilms = 10;
-    private int itemsLength;
     private int newLength;
 
     public void add(Films item) {
@@ -32,27 +31,18 @@ public class AfishaManager {
 
     public Films[] getAll() {
         Films[] items = repository.findAll();
-        if (itemsLength <= 0 || itemsLength > countFilms) {
-            itemsLength = countFilms;
+        if (newLength <= 0 || newLength > countFilms) {
+            newLength = countFilms;
         }
-        if (items.length < itemsLength) {
-            itemsLength = items.length;
+        if (items.length < newLength) {
+            newLength = items.length;
         }
-        Films[] result = new Films[itemsLength];
+        Films[] result = new Films[newLength];
 
         for (int i = 0; i < items.length; i++) {
             int index = items.length - i - 1;
             result[i] = items[index];
         }
         return result;
-    }
-
-
-    public int getNewLength() {
-        return newLength;
-    }
-
-    public void setNewLength(int newLength) {
-        this.newLength = newLength;
     }
 }
